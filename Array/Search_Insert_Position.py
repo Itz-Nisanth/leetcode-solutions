@@ -26,16 +26,32 @@ nums contains distinct values sorted in ascending order.
 
 class Solution(object):
     def searchInsert(self, nums, target):
-        for i in range(0, len(nums)):
-            if(nums[i] == target):
-                return i 
+        # for i in range(0, len(nums)):
+        #     if(nums[i] == target):
+        #         return i 
 
           
-        for i in range(0, len(nums)):
-            if(nums[i] > target):
-                return i
+        # for i in range(0, len(nums)):
+        #     if(nums[i] > target):
+        #         return i
 
-        return len(nums)
+        # return len(nums)
+        
+        n = len(nums)
+        left = 0
+        right = n-1
+        mid = (right + left) // 2
+
+        while(left <= right):
+            if(nums[mid] == target):
+                return mid
+            mid = (right + left) // 2
+            if(nums[mid] > target):
+                right = mid - 1
+            elif(nums[mid] < target):
+                left = mid + 1
+        
+        return left
     
 s = Solution()
 print(s.searchInsert([1,3,5,6], 5)) # Output: 2
