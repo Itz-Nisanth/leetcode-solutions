@@ -30,3 +30,34 @@ Constraints:
 0 <= digits[i] <= 9
 digits does not contain any leading 0's.
 '''
+
+class Solution(object):
+    def plusOne(self, digits):
+        d = []
+        temp = ''
+
+        for i in range(0, len(digits)):
+            temp = str(temp) + str(digits[i])
+
+        temp = int(temp) + 1
+        i = 0
+        r = 1
+
+        while(temp > 0):
+            r = int(temp) % 10
+            d.append(r)
+            i+=1
+            temp = temp // 10
+            
+        l, rig = 0, len(d)-1
+        while(l < rig):
+            d[l], d[rig] = d[rig], d[l]
+            l+=1
+            rig-=1
+            
+        return d
+    
+s = Solution()
+print(s.plusOne([1,2,3])) #output: [1,2,4]
+print(s.plusOne([4,3,2,1])) #output: [4,3,2,2]
+print(s.plusOne([9])) #output: [1,0]
